@@ -1,7 +1,7 @@
 {
 	"name": "@bracketed/logger",
 	"packageManager": "yarn@4.4.1",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -9,7 +9,7 @@
 	"author": "@bracketed",
 	"main": "./lib/cjs/index.js",
 	"module": "./lib/esm/index.js",
-	"types": "./types/index.d.ts",
+	"types": "./lib/esm/index.d.ts",
 	"exports": {
 		".": {
 			"require": "./lib/cjs/index.js",
@@ -17,8 +17,7 @@
 		}
 	},
 	"files": [
-		"lib",
-		"types"
+		"lib"
 	],
 	"type": "module",
 	"imports": {
@@ -42,11 +41,10 @@
 	"scripts": {
 		"build:cjs": "tsc -p tsconfig.cjs.json",
 		"build:esm": "tsc -p tsconfig.esm.json",
-		"build:types": "tsc -p tsconfig.types.json",
-		"build": "yarn build:cjs && yarn build:esm && yarn build:types",
-		"build:production": "npm run build:cjs && npm run build:esm && npm run build:types",
+		"build": "yarn build:cjs && yarn build:esm",
+		"build:production": "npm run build:cjs && npm run build:esm",
 		"build:lint": "yarn build && yarn lint",
-		"lint": "yarn prettier --write lib/**/*.js && yarn prettier --write types/**/*.d.ts && yarn prettier --write types/**/*.d.ts.map",
+		"lint": "yarn prettier --write lib/**/*.js && yarn prettier --write types/**/*.d.ts",
 		"validate": "yarn prettier --check src/**/*.ts",
 		"lint:all": "yarn prettier --write .",
 		"validate:all": "yarn prettier --check ."
