@@ -1,18 +1,29 @@
 {
 	"name": "@bracketed/logger",
 	"packageManager": "yarn@4.4.1",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"publishConfig": {
 		"access": "public"
 	},
 	"license": "Apache-2.0",
 	"description": "An alternative to your run-of-the-mill node console logging functions!",
 	"author": "@bracketed",
-	"module": "./lib/index.js",
-	"types": "./lib/index.d.ts",
+	"main": "./lib/cjs/index.js",
+	"module": "./lib/esm/index.js",
+	"types": "./lib/types/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./lib/index.js"
+			"default": "./lib/esm/index.js",
+			"require": {
+				"node": "./lib/cjs/index.js",
+				"default": "./lib/cjs/index.js",
+				"types": "./lib/cjs/index.d.ts"
+			},
+			"import": {
+				"node": "./lib/esm/index.js",
+				"default": "./lib/esm/index.js",
+				"types": "./lib/esm/index.d.ts"
+			}
 		}
 	},
 	"files": [

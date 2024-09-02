@@ -1,9 +1,9 @@
 import { bgRed, cyan, gray, isColorSupported, magenta, red, white, yellow, type Color } from 'colorette';
-import { Console } from 'console';
+import { Console } from 'node:console';
 import { inspect, type InspectOptions } from 'node:util';
-import { LoggerLevel, type LoggerLevelOptions } from './Level';
-import { Logger as BuiltinLogger, type LogMethods } from './ILogger/ILoggerStyle';
-import { LogLevel } from './ILogger/ILogger';
+import { LogLevel } from './ILogger/ILogger.js';
+import { Logger as BuiltinLogger, type LogMethods } from './ILogger/ILoggerStyle.js';
+import { LoggerLevel, type LoggerLevelOptions } from './Level.js';
 
 export class Logger extends BuiltinLogger {
 	/**

@@ -1,5 +1,5 @@
-import { LoggerStyle, type LoggerStyleResolvable } from './Style';
-import { LoggerTimestamp, type LoggerTimestampOptions } from './Timestamp';
+import { LoggerStyle, type LoggerStyleResolvable } from './Style.js';
+import { LoggerTimestamp, type LoggerTimestampOptions } from './Timestamp.js';
 
 /**
  * Logger utility that stores and applies a full style into the message.

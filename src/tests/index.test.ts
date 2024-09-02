@@ -1,4 +1,4 @@
-import { Logger, LogLevel } from '../index';
+import { Logger, LogLevel } from '../index.js';
 
 const console = new Logger();
 

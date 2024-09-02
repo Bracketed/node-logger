@@ -7,9 +7,9 @@
 		"baseUrl": ".",
 		"rootDir": "./src",
 		"outDir": "./lib",
-		"esModuleInterop": true,
 		"declaration": true,
 		"declarationMap": true,
+		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"incremental": false
 	},

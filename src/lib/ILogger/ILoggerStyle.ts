@@ -1,4 +1,4 @@
-import { LogLevel, type ILogger } from './ILogger';
+import { LogLevel, type ILogger } from './ILogger.js';
 
 export class Logger implements ILogger {
 	public level: LogLevel;

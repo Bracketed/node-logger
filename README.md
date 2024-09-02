@@ -56,6 +56,20 @@ console.trace('Hello World!');
 console.write(LogLevel.Info, 'Hello World!');
 ```
 
+```ts
+// CJS
+const { Logger, LogLevel } = require('@bracketed/logger');
+const console = new Logger();
+
+console.info('Hello World!');
+console.debug('Hello World!');
+console.warn('Hello World!');
+console.error('Hello World!');
+console.fatal('Hello World!');
+console.trace('Hello World!');
+console.write(LogLevel.Info, 'Hello World!');
+```
+
 <h1 id="Contribution">Contribution & Help</h1>
 
 Feel free to contribute to this project, join our [discord](https://bracketed.co.uk/discord) and help us with future development of Project Bracketed.
