@@ -1,7 +1,7 @@
 {
 	"name": "@bracketed/logger",
 	"packageManager": "yarn@4.4.1",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -10,10 +10,8 @@
 	"author": "@bracketed",
 	"main": "./lib/cjs/index.js",
 	"module": "./lib/esm/index.js",
-	"types": "./lib/types/index.d.ts",
 	"exports": {
 		".": {
-			"default": "./lib/esm/index.js",
 			"require": {
 				"node": "./lib/cjs/index.js",
 				"default": "./lib/cjs/index.js",
