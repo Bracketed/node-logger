@@ -1,10 +1,6 @@
 name: Node.js Package (NPM)
 
 on:
-    push:
-        paths:
-            - src/**
-            - package.json
     workflow_dispatch:
 
 jobs:
@@ -16,7 +12,7 @@ jobs:
               with:
                   node-version: 22
             - run: npm install
-            - run: npm run build:production
+            - run: npm run build
 
     publish-npm:
         needs: build
@@ -28,7 +24,7 @@ jobs:
                   node-version: 22
                   registry-url: https://registry.npmjs.org/
             - run: npm install
-            - run: npm run build:production
+            - run: npm run build
             - run: npm publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NODE_PUBLISH}}
