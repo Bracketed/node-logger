@@ -1,4 +1,6 @@
-import { LogLevel, type ILogger } from './ILogger.js';
+import { type ILogger } from './ILogger';
+import { LogLevel } from './ILogLevel';
+import type { LogMethods } from './ILogMethods';
 
 export class Logger implements ILogger {
 	public level: LogLevel;
@@ -50,5 +52,3 @@ export class Logger implements ILogger {
 		[LogLevel.Fatal, 'error'],
 	]);
 }
-
-export type LogMethods = 'trace' | 'debug' | 'info' | 'warn' | 'error';

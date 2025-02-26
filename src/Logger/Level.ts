@@ -1,5 +1,6 @@
-import { LoggerStyle, type LoggerStyleResolvable } from './Style.js';
-import { LoggerTimestamp, type LoggerTimestampOptions } from './Timestamp.js';
+import { LoggerStyle } from '../Style/Index';
+import { LoggerTimestamp } from '../Utilities/Timestamp';
+import type { LoggerLevelOptions } from './LevelOptions';
 
 /**
  * Logger utility that stores and applies a full style into the message.
@@ -42,31 +43,4 @@ export class LoggerLevel {
 
 		return this.message ? this.message.run(content) : content;
 	}
-}
-
-/**
- * The options for {@link LoggerLevel}.
- * @since 1.0.0
- */
-export interface LoggerLevelOptions {
-	/**
-	 * The timestamp options. Set to `null` to disable timestamp parsing.
-	 * @since 1.0.0
-	 * @default {}
-	 */
-	timestamp?: LoggerTimestampOptions | null;
-
-	/**
-	 * The infix to be included between the timestamp and the message.
-	 * @since 1.0.0
-	 * @default ''
-	 */
-	infix?: string;
-
-	/**
-	 * The style options for the message.
-	 * @since 1.0.0
-	 * @default colorette.clear
-	 */
-	message?: LoggerStyleResolvable | null;
 }

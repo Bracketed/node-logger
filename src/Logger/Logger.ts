@@ -1,9 +1,16 @@
 import { bgRed, cyan, gray, isColorSupported, magenta, red, white, yellow, type Color } from 'colorette';
+
 import { Console } from 'node:console';
 import { inspect, type InspectOptions } from 'node:util';
-import { LogLevel } from './ILogger/ILogger.js';
-import { Logger as BuiltinLogger, type LogMethods } from './ILogger/ILoggerStyle.js';
-import { LoggerLevel, type LoggerLevelOptions } from './Level.js';
+
+import { LogLevel } from '../ILogger/ILogLevel';
+import type { LogMethods } from '../ILogger/ILogMethods';
+import { Logger as BuiltinLogger } from '../ILogger/ILoggerStyle';
+
+import type { LoggerFormatOptions } from './FormatOptions';
+import { LoggerLevel } from './Level';
+import type { LoggerLevelOptions } from './LevelOptions';
+import type { LoggerOptions } from './Options';
 
 export class Logger extends BuiltinLogger {
 	/**
@@ -36,7 +43,7 @@ export class Logger extends BuiltinLogger {
 		this.console = new Console(options.stdout ?? process.stdout, options.stderr ?? process.stderr);
 		this.formats = Logger.createFormatMap(options.format, options.defaultFormat);
 		this.join = options.join ?? ' ';
-		this.depth = options.depth ?? 0;
+		this.depth = options.depth ?? 2;
 	}
 
 	/**
@@ -106,109 +113,3 @@ export class Logger extends BuiltinLogger {
 		});
 	}
 }
-
-/**
- * The logger options.
- * @since 1.0.0
- */
-export interface LoggerOptions {
-	/**
-	 * A writable stream for the output logs.
-	 * @since 1.0.0
-	 * @default process.stdout
-	 */
-	stdout?: NodeJS.WritableStream;
-
-	/**
-	 * A writable stream for the error logs.
-	 * @since 1.0.0
-	 * @default process.stderr
-	 */
-	stderr?: NodeJS.WritableStream;
-
-	/**
-	 * The default options used to fill all the possible values for {@link LoggerOptions.format}.
-	 * @since 1.0.0
-	 * @default options.format.none ?? {}
-	 */
-	defaultFormat?: LoggerLevelOptions;
-
-	/**
-	 * The options for each log level. LogLevel.None serves to set the default for all keys, where only
-	 * {@link LoggerTimestampOptions.timestamp} and {@link LoggerLevelOptions.prefix} would be overridden.
-	 * @since 1.0.0
-	 * @default {}
-	 */
-	format?: LoggerFormatOptions;
-
-	/**
-	 * The minimum log level.
-	 * @since 1.0.0
-	 * @default LogLevel.Info
-	 */
-	level?: LogLevel;
-
-	/**
-	 * The string that joins different messages.
-	 * @since 1.0.0
-	 * @default ' '
-	 */
-	join?: string;
-
-	/**
-	 * The inspect depth when logging objects.
-	 * @since 1.0.0
-	 * @default 0
-	 */
-	depth?: number;
-}
-
-/**
- * The logger format options.
- * @since 1.0.0
- */
-export interface LoggerFormatOptions {
-	/**
-	 * The logger options for the lowest log level, used when calling {@link ILogger.trace}.
-	 * @since 1.0.0
-	 */
-	trace?: LoggerLevelOptions;
-
-	/**
-	 * The logger options for the debug level, used when calling {@link ILogger.debug}.
-	 * @since 1.0.0
-	 */
-	debug?: LoggerLevelOptions;
-
-	/**
-	 * The logger options for the info level, used when calling {@link ILogger.info}.
-	 * @since 1.0.0
-	 */
-	info?: LoggerLevelOptions;
-
-	/**
-	 * The logger options for the warning level, used when calling {@link ILogger.warn}.
-	 * @since 1.0.0
-	 */
-	warn?: LoggerLevelOptions;
-
-	/**
-	 * The logger options for the error level, used when calling {@link ILogger.error}.
-	 * @since 1.0.0
-	 */
-	error?: LoggerLevelOptions;
-
-	/**
-	 * The logger options for the critical level, used when calling {@link ILogger.fatal}.
-	 * @since 1.0.0
-	 */
-	fatal?: LoggerLevelOptions;
-
-	/**
-	 * The logger options for an unknown or uncategorised level.
-	 * @since 1.0.0
-	 */
-	none?: LoggerLevelOptions;
-}
-
-export class ILogger {}

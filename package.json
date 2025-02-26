@@ -8,23 +8,24 @@
 	"license": "Apache-2.0",
 	"description": "An alternative to your run-of-the-mill node console logging functions!",
 	"author": "@bracketed",
-	"main": "./lib/cjs/index.js",
-	"module": "./lib/esm/index.js",
-	"types": "./lib/types/index.d.ts",
+	"main": "lib/cjs/index.cjs",
+	"module": "lib/esm/index.mjs",
+	"types": "lib/cjs/index.d.cts",
 	"exports": {
 		".": {
-			"types": "./lib/types/index.d.ts",
-			"require": "./lib/cjs/index.js",
-			"import": "./lib/esm/index.js"
+			"import": {
+				"types": "./lib/esm/index.d.mts",
+				"default": "./lib/esm/index.mjs"
+			},
+			"require": {
+				"types": "./lib/cjs/index.d.cts",
+				"default": "./lib/cjs/index.cjs"
+			}
 		}
 	},
 	"files": [
 		"lib"
 	],
-	"type": "module",
-	"imports": {
-		"#root/*": "./lib/*.js"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/bracketed/node-logger.git",
@@ -41,10 +42,7 @@
 		"logger"
 	],
 	"scripts": {
-		"build:cjs": "tsc -p tsconfig.cjs.json",
-		"build:esm": "tsc -p tsconfig.esm.json",
-		"build": "yarn build:cjs && yarn build:esm",
-		"build:production": "npm run build:cjs && npm run build:esm",
+		"build": "tsup",
 		"build:lint": "yarn build && yarn lint",
 		"lint": "yarn prettier --write lib/**/*.js && yarn prettier --write types/**/*.d.ts",
 		"validate": "yarn prettier --check src/**/*.ts",
@@ -54,12 +52,14 @@
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",
 		"@types/node": "^20.10.5",
+		"esbuild-plugin-file-path-extensions": "^2.1.4",
+		"esbuild-plugin-version-injector": "^1.2.1",
 		"prettier": "^3.1.1",
+		"tsup": "^8.4.0",
 		"typescript": "^5.3.3"
 	},
 	"dependencies": {
 		"@sapphire/timestamp": "^1.0.3",
-		"colorette": "^2.0.20",
-		"tslib": "^2.7.0"
+		"colorette": "^2.0.20"
 	}
 }

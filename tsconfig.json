@@ -1,7 +1,15 @@
 {
-	"extends": "@bracketed/typescript-config/extra-strict",
+	"extends": ["@bracketed/typescript-config", "@bracketed/typescript-config/extra-strict"],
+	"compileOnSave": true,
 	"compilerOptions": {
-		"module": "ESNext",
+		"noEmit": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"exactOptionalPropertyTypes": false,
+		"noImplicitOverride": true,
+		"verbatimModuleSyntax": true,
+		"module": "ES2022",
+		"moduleResolution": "Bundler",
 		"lib": ["ESNext"],
 		"target": "ESNext",
 		"baseUrl": ".",
@@ -11,7 +19,26 @@
 		"declarationMap": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"incremental": false
+		"incremental": false,
+		"listEmittedFiles": true,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"alwaysStrict": true,
+		"importHelpers": false,
+		"newLine": "crlf",
+		"noEmitHelpers": false,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
+		"pretty": true,
+		"removeComments": false,
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"strict": true,
+		"useDefineForClassFields": true
 	},
-	"exclude": ["lib", "node_modules", "src/tests"]
+	"exclude": ["lib", "node_modules", "test", "tsup.config.ts"]
 }

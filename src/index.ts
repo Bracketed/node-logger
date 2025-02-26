@@ -14,12 +14,10 @@
 	
 */
 
-import { LogLevel } from './lib/ILogger/ILogger.js';
-import { Logger } from './lib/Logger.js';
+import { LogLevel } from './ILogger/ILogLevel';
 
-export * from './lib/Level.js';
-export * from './lib/Logger.js';
-export * from './lib/Style.js';
-export * from './lib/Timestamp.js';
+export * from './Logger/Index';
+export * from './Style/Index';
+export * from './Utilities/Timestamp';
 
-export { Logger, LogLevel };
+export { LogLevel };
