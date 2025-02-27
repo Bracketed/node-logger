@@ -1,6 +1,6 @@
-import { LoggerStyle } from '../Style';
 import type { LoggerStyleResolvable } from '../Style/Resolvable';
-import { Timestamp } from '../Timestamper';
+import { LoggerStyle } from '../Style/Style';
+import { Timestamp } from '../Timestamper/Timestamp';
 
 /**
  * Logger utility that formats a timestamp.

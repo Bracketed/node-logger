@@ -14,10 +14,21 @@
 	
 */
 
-import { LogLevel } from './Logger/ILogger/index';
+import { LogLevel } from './Logger/ILogger/ILogLevel';
 
-export * from './Logger/index';
-export * from './Style/index';
+export * from './Logger/FormatOptions';
+export * from './Logger/Level';
+export * from './Logger/LevelOptions';
+export * from './Logger/Logger';
+export * from './Logger/Options';
+
+export * from './Style/Background';
+export * from './Style/Effect';
+export * from './Style/Options';
+export * from './Style/Resolvable';
+export * from './Style/Style';
+export * from './Style/Text';
+
 export * from './Utilities/Timestamp';
 
 export { LogLevel };
