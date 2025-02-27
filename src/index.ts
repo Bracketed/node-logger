@@ -14,10 +14,10 @@
 	
 */
 
-import { LogLevel } from './ILogger/ILogLevel';
+import { LogLevel } from './Logger/ILogger';
 
-export * from './Logger/Index';
-export * from './Style/Index';
+export * from './Logger';
+export * from './Style';
 export * from './Utilities/Timestamp';
 
 export { LogLevel };

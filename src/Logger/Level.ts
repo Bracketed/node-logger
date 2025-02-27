@@ -1,4 +1,4 @@
-import { LoggerStyle } from '../Style/Index';
+import { LoggerStyle } from '../Style';
 import { LoggerTimestamp } from '../Utilities/Timestamp';
 import type { LoggerLevelOptions } from './LevelOptions';
 

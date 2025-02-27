@@ -1,4 +1,4 @@
-import * as Colorette from 'colorette';
+import * as Colorette from '../Colouring';
 import type { LoggerStyleOptions } from './Options';
 
 /**

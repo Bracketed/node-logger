@@ -1,5 +1,5 @@
-import type { LogLevel } from '../ILogger/ILogLevel';
 import type { LoggerFormatOptions } from './FormatOptions';
+import type { LogLevel } from './ILogger/ILogLevel';
 import type { LoggerLevelOptions } from './LevelOptions';
 
 /**
@@ -59,8 +59,8 @@ export interface LoggerOptions {
 
 	/**
 	 * A prefix to messages when logging.
-	 * @since 1.0.0
-	 * @default 0
+	 * @since 1.0.11
+	 * @default undefined
 	 */
 	prefix?: string;
 }

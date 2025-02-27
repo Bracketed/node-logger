@@ -1,7 +1,7 @@
 {
 	"name": "@bracketed/logger",
-	"packageManager": "yarn@4.4.1",
-	"version": "1.0.10",
+	"packageManager": "yarn@4.6.0",
+	"version": "1.0.11",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -21,6 +21,16 @@
 				"types": "./lib/cjs/index.d.cts",
 				"default": "./lib/cjs/index.cjs"
 			}
+		},
+		"./styling": {
+			"import": {
+				"types": "./lib/esm/Colouring/index.d.mts",
+				"default": "./lib/esm/Colouring/index.mjs"
+			},
+			"require": {
+				"types": "./lib/cjs/Colouring/index.d.cts",
+				"default": "./lib/cjs/Colouring/index.cjs"
+			}
 		}
 	},
 	"files": [
@@ -28,10 +38,9 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bracketed/node-logger.git",
-		"directory": "."
+		"url": "https://github.com/Bracketed/node-logger"
 	},
-	"homepage": "https://bracketed.co.uk",
+	"homepage": "https://github.com/Bracketed/node-logger",
 	"sideEffects": false,
 	"bugs": {
 		"url": "https://github.com/bracketed/node-logger/issues"
@@ -51,15 +60,11 @@
 	},
 	"devDependencies": {
 		"@bracketed/typescript-config": "^4.4.0",
-		"@types/node": "^20.10.5",
+		"@types/node": "^22.13.5",
 		"esbuild-plugin-file-path-extensions": "^2.1.4",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"prettier": "^3.1.1",
+		"prettier": "^3.5.2",
 		"tsup": "^8.4.0",
-		"typescript": "^5.3.3"
-	},
-	"dependencies": {
-		"@sapphire/timestamp": "^1.0.3",
-		"colorette": "^2.0.20"
+		"typescript": "^5.7.3"
 	}
 }

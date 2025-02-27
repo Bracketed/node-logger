@@ -1,4 +1,4 @@
-import type { LoggerStyleResolvable } from '../Style/Resolveable';
+import type { LoggerStyleResolvable } from '../Style/Resolvable';
 import type { LoggerTimestampOptions } from '../Utilities/Timestamp';
 
 /**

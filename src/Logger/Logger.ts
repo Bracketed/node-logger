@@ -1,11 +1,11 @@
-import { bgRed, cyan, gray, isColorSupported, magenta, red, white, yellow, type Color } from 'colorette';
+import { bgRed, cyan, gray, isColorSupported, magenta, red, white, yellow, type Color } from '../Colouring';
 
 import { Console } from 'node:console';
 import { inspect, type InspectOptions } from 'node:util';
 
-import { LogLevel } from '../ILogger/ILogLevel';
-import type { LogMethods } from '../ILogger/ILogMethods';
-import { Logger as BuiltinLogger } from '../ILogger/ILoggerStyle';
+import { LogLevel } from './ILogger/ILogLevel';
+import type { LogMethods } from './ILogger/ILogMethods';
+import { Logger as BuiltinLogger } from './ILogger/ILoggerStyle';
 
 import type { LoggerFormatOptions } from './FormatOptions';
 import { LoggerLevel } from './Level';
@@ -37,13 +37,21 @@ export class Logger extends BuiltinLogger {
 	 */
 	public readonly depth: number;
 
+	/**
+	 * A prefix for messages logged by the logger.
+	 * @since 1.0.11
+	 */
+	private readonly prefix: string | undefined;
+
 	public constructor(options: LoggerOptions = {}) {
 		super(options.level ?? LogLevel.Info);
 
-		this.console = new Console(options.stdout ?? process.stdout, options.stderr ?? process.stderr);
-		this.formats = Logger.createFormatMap(options.format, options.defaultFormat);
 		this.join = options.join ?? ' ';
 		this.depth = options.depth ?? 2;
+		this.prefix = options.prefix ?? undefined;
+
+		this.console = new Console(options.stdout ?? process.stdout, options.stderr ?? process.stderr);
+		this.formats = this.createFormatMap(options.format, options.defaultFormat);
 	}
 
 	/**
@@ -84,32 +92,32 @@ export class Logger extends BuiltinLogger {
 		return isColorSupported;
 	}
 
-	private static createFormatMap(
-		options: LoggerFormatOptions = {},
-		defaults: LoggerLevelOptions = options.none ?? {}
-	) {
+	protected createFormatMap(options: LoggerFormatOptions = {}, defaults: LoggerLevelOptions = options.none ?? {}) {
 		return new Map<LogLevel, LoggerLevel>([
-			[LogLevel.Trace, Logger.ensureDefaultLevel(options.trace, defaults, gray, 'TRACE')],
-			[LogLevel.Debug, Logger.ensureDefaultLevel(options.debug, defaults, magenta, 'DEBUG')],
-			[LogLevel.Info, Logger.ensureDefaultLevel(options.info, defaults, cyan, 'INFO')],
-			[LogLevel.Warn, Logger.ensureDefaultLevel(options.warn, defaults, yellow, 'WARN')],
-			[LogLevel.Error, Logger.ensureDefaultLevel(options.error, defaults, red, 'ERROR')],
-			[LogLevel.Fatal, Logger.ensureDefaultLevel(options.fatal, defaults, bgRed, 'FATAL')],
-			[LogLevel.None, Logger.ensureDefaultLevel(options.none, defaults, white, '')],
+			[LogLevel.Trace, this.ensureDefaultLevel(options.trace, defaults, gray, 'TRACE')],
+			[LogLevel.Debug, this.ensureDefaultLevel(options.debug, defaults, magenta, 'DEBUG')],
+			[LogLevel.Info, this.ensureDefaultLevel(options.info, defaults, cyan, 'INFO')],
+			[LogLevel.Warn, this.ensureDefaultLevel(options.warn, defaults, yellow, 'WARN')],
+			[LogLevel.Error, this.ensureDefaultLevel(options.error, defaults, red, 'ERROR')],
+			[LogLevel.Fatal, this.ensureDefaultLevel(options.fatal, defaults, bgRed, 'FATAL')],
+			[LogLevel.None, this.ensureDefaultLevel(options.none, defaults, white, '')],
 		]);
 	}
 
-	private static ensureDefaultLevel(
+	protected ensureDefaultLevel(
 		options: LoggerLevelOptions | undefined,
 		defaults: LoggerLevelOptions,
 		color: Color,
 		name: string
 	) {
 		if (options) return new LoggerLevel(options);
+
 		return new LoggerLevel({
 			...defaults,
 			timestamp: defaults.timestamp === null ? null : { ...(defaults.timestamp ?? {}), color },
-			infix: name.length ? `${color(name.padEnd(5, ' '))} - ` : '',
+			infix: name.length
+				? `${color(name.padEnd(5, ' '))} - ${this.prefix ? `${this.prefix} - ` : ''}`
+				: `${this.prefix ? `${this.prefix} - ` : ''}`,
 		});
 	}
 }

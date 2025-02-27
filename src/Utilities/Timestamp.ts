@@ -1,6 +1,6 @@
-import { Timestamp } from '@sapphire/timestamp';
-import { LoggerStyle } from '../Style/Index';
-import type { LoggerStyleResolvable } from '../Style/Resolveable';
+import { LoggerStyle } from '../Style';
+import type { LoggerStyleResolvable } from '../Style/Resolvable';
+import { Timestamp } from '../Timestamper';
 
 /**
  * Logger utility that formats a timestamp.

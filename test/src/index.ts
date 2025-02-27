@@ -17,7 +17,7 @@
 
 import { Logger, LogLevel } from '@bracketed/logger';
 
-const console = new Logger();
+const console = new Logger({ prefix: 'Application' });
 
 console.info('Hello World!');
 console.debug('Hello World!');
