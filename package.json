@@ -1,7 +1,7 @@
 {
 	"name": "@bracketed/logger",
 	"packageManager": "yarn@4.6.0",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -10,7 +10,7 @@
 	"author": "@bracketed",
 	"main": "lib/cjs/index.cjs",
 	"module": "lib/esm/index.mjs",
-	"types": "lib/cjs/index.d.cts",
+	"types": "lib/cjs/index.d.ts",
 	"exports": {
 		".": {
 			"import": {
@@ -60,8 +60,9 @@
 		"update": "yarn upgrade-interactive"
 	},
 	"devDependencies": {
-		"@bracketed/tsup-configuration": "^1.0.1",
-		"@bracketed/typescript-config": "^4.7.0",
+		"@bracketed/tsup-configuration": "^1.0.5",
+		"@bracketed/typescript-config": "^4.7.1",
+		"@swc/core": "^1.12.5",
 		"@types/node": "^24.0.3",
 		"prettier": "^3.5.3",
 		"tsup": "^8.5.0",
